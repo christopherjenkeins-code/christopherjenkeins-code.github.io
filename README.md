@@ -1,61 +1,77 @@
 # 🍷 The Sopranos Restaurant & Lounge
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Status](https://img.shields.io/badge/Status-Completed-success)]()
+Welcome to the repository for The Sopranos Restaurant & Lounge web platform. This responsive multi-page website showcases the venue's dining, craft cocktails, VIP nightlife events, operating details, a table reservation form, and a global header search system.
 
-Welcome to the repository for **The Sopranos Restaurant & Lounge** web platform. This responsive multi-page website showcases the venue's dining, craft cocktails, VIP nightlife events, operating details, a table reservation form, and a global header search system.
+📌 Project Overview
 
----
+Located in Northern Roodepoort, Gauteng, South Africa, The Sopranos Restaurant & Lounge offers a premium culinary and nightlife experience.
 
-## 📌 Project Overview
+Key Pages & Features
 
-Located in Northern Roodepoort, Gauteng, South Africa, **The Sopranos Restaurant & Lounge** offers a premium culinary and nightlife experience.
+🔍 Global Search Bar: Persistent search input integrated across all page headers for quick site navigation.
 
-### Key Pages & Features
-* 🔍 **Global Search Bar:** Persistent search input integrated across all page headers for quick site navigation.
-* 🏠 **Home (`index.html`):** Hero section, featured special, live "Open now / Closed" badge.
-* 📖 **About Us (`about.html`):** Background, culinary vision, design approach and references.
-* 🍽️ **Menu (`menu.html`):** Burgers, wings, cocktails and event specials with a category filter.
-* 🍸 **Services (`services.html`):** Fine dining, cocktail bar and VIP lounge event hosting.
-* 📅 **Reservations (`enquiry.html`):** Booking form with date, time, phone and party-size validation.
-* 📞 **Contact Us (`contact.html`):** Opening hours, address, validated contact form and Google Map.
+🏠 Home (index.html): Hero section, featured special, live "Open now / Closed" badge.
 
-### JavaScript Features (`js/main.js`)
-* Reservation and contact form validation with on-page confirmation messages
-* Menu category filter
-* Open now / Closed badge in South African time
-* Header search interaction functionality
-* Back-to-top button, auto-updating footer year, mobile menu auto-close
+📖 About Us (about.html): Background, culinary vision, design approach and references.
 
----
+🍽️ Menu (menu.html): Burgers, wings, cocktails and event specials with a category filter.
 
-## 🗺️ Sitemap
+🍸 Services (services.html): Fine dining, cocktail bar and VIP lounge event hosting.
 
-Explore the rest of our digital portal[cite: 1]:
+📅 Reservations (enquiry.html): Booking form with date, time, phone and party-size validation.
 
-* ➔ **[Homepage & Highlights](index.html)**[cite: 1]
-* ➔ **[Food & Drinks Menu](menu.html)**[cite: 1]
-* ➔ **[Lounge Services & Events](services.html)**[cite: 1]
-* ➔ **[Table Reservations & Enquiries](enquiry.html)**[cite: 1]
-* ➔ **[Contact Info & Location Directions](contact.html)**[cite: 1]
+📞 Contact Us (contact.html): Opening hours, address, validated contact form and Google Map.
 
-A full page hierarchy and navigation map is documented in `SITEMAP.md` in the project repository[cite: 1].
+JavaScript Features (js/main.js)
 
----
+Reservation and contact form validation with on-page confirmation messages
 
-## 🛠️ Built With
+Menu category filter
 
-* **HTML5:** Semantic structure for accessibility and SEO.
-* **CSS3:** Responsive layout with Flexbox/Grid and custom properties (`css/style.css`).
-* **JavaScript (vanilla):** No libraries or frameworks (`js/main.js`).
+Open now / Closed badge in South African time
 
----
+Header search interaction functionality
 
-## 📂 Repository Structure
+Back-to-top button, auto-updating footer year, mobile menu auto-close
 
-```text
+🗺️ Sitemap
+
+Explore the rest of our digital portal:
+
+➔ Homepage & Highlights
+
+➔ Food & Drinks Menu
+
+➔ Lounge Services & Events
+
+➔ Table Reservations & Enquiries
+
+➔ Contact Info & Location Directions
+
+A full page hierarchy and navigation map is documented in SITEMAP.md in the project repository.
+
+🛠️ Built With
+
+HTML5: Semantic structure for accessibility and SEO.
+
+CSS3: Responsive layout with Flexbox/Grid and custom properties (css/style.css).
+
+JavaScript (vanilla): No libraries or frameworks (js/main.js).
+
+📚 References & Design Inspiration
+
+ChowNow (2026) Restaurant Website Best Practices With Examples, ChowNow Blog, viewed 14 September 2026, https://get.chownow.com/blog/restaurant-website-best-practices-and-examples/.
+
+MenuTiger (2026) Web Design for Restaurants: A How-to Guide, MenuTiger Blog, viewed 14 September 2026, https://www.menutiger.com/blog/web-design-for-restaurants.
+
+RichMenu (2026) Top Restaurant Website Design in 2026: What Great Looks Like (And What Makes It Convert), RichMenu, viewed 14 September 2026, https://richmenu.io/top-restaurant-website-design/.
+
+Sauce (2025) Restaurant Website Design Best Practices for 2025 and Beyond, Sauce Blog, viewed 14 September 2026, https://home.getsauce.com/post/restaurant-website-design-best-practices.
+
+W3C (2023) WCAG 2 Overview, Web Accessibility Initiative (WAI), viewed 14 September 2026, https://www.w3.org/WAI/standards-guidelines/wcag/.
+
+📂 Repository Structure
+
 .
 ├── index.html                 # Home page
 ├── about.html                 # About page
