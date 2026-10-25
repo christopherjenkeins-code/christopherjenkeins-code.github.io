@@ -1,13 +1,14 @@
 /* ==========================================================
    THE SOPRANOS RESTAURANT & LOUNGE - main.js
-   Version 1.3.3
+   Version 1.4.0
    Features:
-     1. Footer year
-     2. Mobile nav closes after a link is tapped
-     3. Back-to-top button
-     4. "Open now / Closed" badge (South African time)
-     5. Reservation form validation + confirmation (enquiry.html)
-     6. Contact form validation + confirmation (contact.html)
+      1. Footer year
+      2. Mobile nav closes after a link is tapped
+      3. Back-to-top button
+      4. "Open now / Closed" badge (South African time)
+      5. Reservation form validation + confirmation (enquiry.html)
+      6. Contact form validation + confirmation (contact.html)
+      7. Global Header Search (Page redirection & keyword filtering)
    ========================================================== */
 (function () {
     "use strict";
@@ -175,7 +176,6 @@
             if (!time.value) { return fail(status, time, "Please choose a preferred time."); }
             if (!guests.value) { return fail(status, guests, "Please select your party size."); }
 
-            // Check the time against opening hours for the chosen weekday
             var parts = date.value.split("-");
             var weekday = new Date(parts[0], parts[1] - 1, parts[2]).getDay();
             var t = time.value.split(":");
@@ -186,8 +186,6 @@
                 return fail(status, time, DAY_NAMES[weekday] + " bookings are taken between 12:00 and " + formatHour(LAST_BOOKING[weekday]) + ".");
             }
 
-            /* TODO (optional): to receive these requests by email, point the form's
-               action at a free service such as Formspree and submit with fetch(). */
             showStatus(status,
                 "Thank you, " + name.value.trim().split(" ")[0] + "! Your request for " + guests.options[guests.selectedIndex].text +
                 " on " + date.value + " at " + time.value + " has been received. We will confirm by email or phone shortly.",
@@ -218,6 +216,76 @@
         });
     }
 
+    /* ---------- 7. Global Header Search Functionality ---------- */
+    function initSearch() {
+        var searchInput = document.getElementById("searchInput");
+        var searchBtn = document.querySelector(".search-btn");
+
+        if (!searchInput) { return; }
+
+        function performSearch() {
+            var query = searchInput.value.toLowerCase().trim();
+
+            if (!query) {
+                // If input is empty, reset any page content filtering cards back to visible
+                document.querySelectorAll(".menu-card, .about-card, .service-card, .card").forEach(function (item) {
+                    item.style.display = "";
+                });
+                return;
+            }
+
+            // Cross-page mapping keywords
+            if (query.includes("menu") || query.includes("burger") || query.includes("drink") || query.includes("cocktail") || query.includes("food") || query.includes("wing")) {
+                window.location.href = "menu.html";
+                return;
+            } else if (query.includes("service") || query.includes("event") || query.includes("vip") || query.includes("lounge") || query.includes("party")) {
+                window.location.href = "services.html";
+                return;
+            } else if (query.includes("contact") || query.includes("address") || query.includes("map") || query.includes("hours") || query.includes("phone") || query.includes("location")) {
+                window.location.href = "contact.html";
+                return;
+            } else if (query.includes("about") || query.includes("story") || query.includes("vision") || query.includes("who")) {
+                window.location.href = "about.html";
+                return;
+            } else if (query.includes("reserve") || query.includes("booking") || query.includes("table") || query.includes("enquiry")) {
+                window.location.href = "enquiry.html";
+                return;
+            }
+
+            // Fallback to local on-page card filtering if no page keyword match was triggered
+            var searchableItems = document.querySelectorAll(".menu-card, .about-card, .service-card, .card");
+            var foundMatch = false;
+
+            searchableItems.forEach(function (item) {
+                var text = item.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = "";
+                    foundMatch = true;
+                } else {
+                    item.style.display = "none";
+                }
+            });
+
+            if (!foundMatch) {
+                // Optional notification if nothing matches locally or across routes
+                console.log("No specific matches found for: " + query);
+            }
+        }
+
+        // Event listeners for button click, 'Enter' key press, and live input filtering
+        if (searchBtn) {
+            searchBtn.addEventListener("click", performSearch);
+        }
+
+        searchInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                performSearch();
+            }
+        });
+
+        searchInput.addEventListener("input", performSearch);
+    }
+
     /* ---------- Start everything once the page is ready ---------- */
     document.addEventListener("DOMContentLoaded", function () {
         setYear();
@@ -226,43 +294,6 @@
         initOpenStatus();
         initReservationForm();
         initContactForm();
+        initSearch();
     });
-})();// --- Global Header Search Bar Functionality ---
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
-    const searchBtn = document.querySelector(".search-btn");
-
-    if (!searchInput) return;
-
-    function performSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        
-        if (!query) {
-            // Reset visibility if search is empty
-            document.querySelectorAll(".menu-card, .about-card, .service-card, .card").forEach(item => {
-                item.style.display = "";
-            });
-            return;
-        }
-
-        // Search through common content cards across pages
-        const searchableItems = document.querySelectorAll(".menu-card, .about-card, .service-card, .card");
-        
-        searchableItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (text.includes(query)) {
-                item.style.display = ""; // Show matching items
-            } else {
-                item.style.display = "none"; // Hide non-matching items
-            }
-        });
-    }
-
-    // Trigger search on typing
-    searchInput.addEventListener("input", performSearch);
-
-    // Trigger search on clicking the search button
-    if (searchBtn) {
-        searchBtn.addEventListener("click", performSearch);
-    }
-});
+})();
