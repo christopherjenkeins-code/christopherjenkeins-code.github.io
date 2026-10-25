@@ -31,6 +31,20 @@ Located in Northern Roodepoort, Gauteng, South Africa, **The Sopranos Restaurant
 
 ---
 
+## 🗺️ Sitemap
+
+Explore the rest of our digital portal[cite: 1]:
+
+* ➔ **[Homepage & Highlights](index.html)**[cite: 1]
+* ➔ **[Food & Drinks Menu](menu.html)**[cite: 1]
+* ➔ **[Lounge Services & Events](services.html)**[cite: 1]
+* ➔ **[Table Reservations & Enquiries](enquiry.html)**[cite: 1]
+* ➔ **[Contact Info & Location Directions](contact.html)**[cite: 1]
+
+A full page hierarchy and navigation map is documented in `SITEMAP.md` in the project repository[cite: 1].
+
+---
+
 ## 🛠️ Built With
 
 * **HTML5:** Semantic structure for accessibility and SEO.
