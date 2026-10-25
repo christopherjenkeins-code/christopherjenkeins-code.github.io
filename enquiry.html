@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations | The Sopranos</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <a href="index.html" class="logo">THE SOPRANOS</a>
+
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+            <input type="text" id="searchInput" placeholder="Search the site..." class="search-input">
+            <button type="button" class="search-btn">Search</button>
+        </div>
+
+        <!-- Mobile menu toggle (pure CSS, no JavaScript needed) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+        <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+
+        <nav class="navbar" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h2>RESERVATIONS &amp; ENQUIRIES</h2>
+            <p>Book a table or inquire about hosting private VIP events with us.</p>
+        </section>
+
+        <!-- Form Section -->
+        <section class="form-container">
+            <form action="#" method="POST" class="reservation-form" id="reservation-form">
+
+                <div class="form-group">
+                    <label for="fullname">Full Name *</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="082 123 4567" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="res-date">Reservation Date *</label>
+                        <input type="date" id="res-date" name="res-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="res-time">Preferred Time *</label>
+                        <input type="time" id="res-time" name="res-time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests *</label>
+                    <select id="guests" name="guests" required>
+                        <option value="" disabled selected>Select party size</option>
+                        <option value="1-2">1 - 2 People</option>
+                        <option value="3-4">3 - 4 People</option>
+                        <option value="5-8">5 - 8 People</option>
+                        <option value="vip">VIP Lounge Group (9+ People)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Special Requests / Notes</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Mention seating preferences, birthday celebrations, or dietary needs..."></textarea>
+                </div>
+
+                <button type="submit" class="btn submit-btn">Submit Reservation Request</button>
+                <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer with Developer Credit -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
+            <p class="developer-credit">
+                Website Designed &amp; Developed by <strong>Lumkikhaya ST10512732</strong>
+            </p>
+            <div class="developer-profile">
+                <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

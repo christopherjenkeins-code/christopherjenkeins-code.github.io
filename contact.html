@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | The Sopranos</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <a href="index.html" class="logo">THE SOPRANOS</a>
+
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+            <input type="text" id="searchInput" placeholder="Search the site..." class="search-input">
+            <button type="button" class="search-btn">Search</button>
+        </div>
+
+        <!-- Mobile menu toggle (pure CSS, no JavaScript needed) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+        <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+
+        <nav class="navbar" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html" class="active" aria-current="page">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h2>CONTACT US</h2>
+            <p>Get in touch or visit us in northern Roodepoort.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-container">
+            <!-- Contact Details Card -->
+            <div class="contact-info">
+                <h3>VISIT OUR VENUE</h3>
+                <p><strong>Address:</strong> 3 Potassium Ave, Creswell Park, Roodepoort, 1724</p>
+                <p><strong>Phone:</strong> +27 (0)11 555 0192</p>
+                <p><strong>WhatsApp:</strong> +27 061 438 6099</p>
+                <p><strong>Email:</strong> <a href="mailto:info@thesopranos.co.za">info@thesopranos.co.za</a></p>
+
+                <h3 class="hours-title">OPERATING HOURS</h3>
+                <p><strong>Mon - Thu:</strong> 12:00 PM &ndash; 12:00 AM</p>
+                <p><strong>Fri - Sat:</strong> 12:00 PM &ndash; 02:00 AM</p>
+                <p><strong>Sunday:</strong> 12:00 PM &ndash; 10:00 PM</p>
+                <p id="open-status" class="open-badge" aria-live="polite"></p>
+            </div>
+
+            <!-- Contact Form Card -->
+            <div class="contact-form-card">
+                <h3>SEND A MESSAGE</h3>
+                <form action="#" method="POST" class="reservation-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name *</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email">Your Email *</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-subject">Subject</label>
+                        <input type="text" id="contact-subject" name="subject" placeholder="General Inquiry">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" name="message" rows="4" required placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn submit-btn">Send Message</button>
+                    <div id="contact-status" class="form-status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- GOOGLE MAPS LOCATION SECTION -->
+        <section class="location-section">
+            <h2 class="section-title">📍 Find Us</h2>
+            <p class="location-address">
+                Visit us at: <strong>3 Potassium Ave, Creswell Park, Roodepoort, 1724</strong>
+            </p>
+
+            <!-- Embedded Interactive Map -->
+            <div class="map-container">
+                <iframe
+                    title="Map showing The Sopranos Restaurant and Lounge"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.472719277884!2d27.876527!3d-26.148702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e959ff7dfd5bfbd%3A0xd6e5f8f553946e91!2s3%20Potassium%20Ave%2C%20Creswell%20Park%2C%20Roodepoort%2C%201724!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
+                    width="100%"
+                    height="400"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Direct Navigation Button -->
+            <div class="map-action">
+                <a href="https://maps.app.goo.gl/wcKbNpBjfH9928QdA" target="_blank" rel="noopener" class="btn btn-directions">
+                    🚗 Get Directions on Google Maps
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with Developer Credit -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
+            <p class="developer-credit">
+                Website Designed &amp; Developed by <strong>Lumkikhaya ST10512732</strong>
+            </p>
+            <div class="developer-profile">
+                <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html> 
