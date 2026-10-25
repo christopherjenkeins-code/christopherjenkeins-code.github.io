@@ -1,6 +1,6 @@
 /* ==========================================================
    THE SOPRANOS RESTAURANT & LOUNGE - main.js
-   Version 1.4.0
+   Version 1.4.1
    Features:
       1. Footer year
       2. Mobile nav closes after a link is tapped
@@ -8,7 +8,7 @@
       4. "Open now / Closed" badge (South African time)
       5. Reservation form validation + confirmation (enquiry.html)
       6. Contact form validation + confirmation (contact.html)
-      7. Global Header Search (Page redirection & keyword filtering)
+      7. Global Header Search (Smart page routing + fallback filtering)
    ========================================================== */
 (function () {
     "use strict";
@@ -50,7 +50,6 @@
         if (now.minutes >= today.open * 60 && now.minutes < Math.min(today.close, 24) * 60) {
             return { open: true, until: today.close };
         }
-        // Spill-over from the previous night (Fri/Sat close at 02:00)
         var prev = HOURS[(now.day + 6) % 7];
         if (prev.close > 24 && now.minutes < (prev.close - 24) * 60) {
             return { open: true, until: prev.close };
@@ -136,7 +135,6 @@
     }
 
     function isValidPhone(value) {
-        // South African numbers: 0821234567 or +27821234567 (spaces/dashes allowed)
         var clean = value.replace(/[\s\-()]/g, "");
         return /^(\+27|0)\d{9}$/.test(clean);
     }
@@ -225,54 +223,48 @@
 
         function performSearch() {
             var query = searchInput.value.toLowerCase().trim();
+            var currentPage = window.location.pathname;
 
             if (!query) {
-                // If input is empty, reset any page content filtering cards back to visible
+                // Reset card visibility if search box is cleared
                 document.querySelectorAll(".menu-card, .about-card, .service-card, .card").forEach(function (item) {
                     item.style.display = "";
                 });
                 return;
             }
 
-            // Cross-page mapping keywords
+            // Determine target page based on explicit keywords
+            var targetPage = null;
             if (query.includes("menu") || query.includes("burger") || query.includes("drink") || query.includes("cocktail") || query.includes("food") || query.includes("wing")) {
-                window.location.href = "menu.html";
-                return;
+                targetPage = "menu.html";
             } else if (query.includes("service") || query.includes("event") || query.includes("vip") || query.includes("lounge") || query.includes("party")) {
-                window.location.href = "services.html";
-                return;
+                targetPage = "services.html";
             } else if (query.includes("contact") || query.includes("address") || query.includes("map") || query.includes("hours") || query.includes("phone") || query.includes("location")) {
-                window.location.href = "contact.html";
-                return;
+                targetPage = "contact.html";
             } else if (query.includes("about") || query.includes("story") || query.includes("vision") || query.includes("who")) {
-                window.location.href = "about.html";
-                return;
+                targetPage = "about.html";
             } else if (query.includes("reserve") || query.includes("booking") || query.includes("table") || query.includes("enquiry")) {
-                window.location.href = "enquiry.html";
+                targetPage = "enquiry.html";
+            }
+
+            // If a specific page is matched and we are NOT already on that page, redirect there
+            if (targetPage && !currentPage.endsWith(targetPage)) {
+                window.location.href = targetPage;
                 return;
             }
 
-            // Fallback to local on-page card filtering if no page keyword match was triggered
+            // Otherwise, filter cards on the current page dynamically
             var searchableItems = document.querySelectorAll(".menu-card, .about-card, .service-card, .card");
-            var foundMatch = false;
-
             searchableItems.forEach(function (item) {
                 var text = item.textContent.toLowerCase();
                 if (text.includes(query)) {
                     item.style.display = "";
-                    foundMatch = true;
                 } else {
                     item.style.display = "none";
                 }
             });
-
-            if (!foundMatch) {
-                // Optional notification if nothing matches locally or across routes
-                console.log("No specific matches found for: " + query);
-            }
         }
 
-        // Event listeners for button click, 'Enter' key press, and live input filtering
         if (searchBtn) {
             searchBtn.addEventListener("click", performSearch);
         }
@@ -283,6 +275,7 @@
             }
         });
 
+        // Optional: comment out or keep live filtering while typing
         searchInput.addEventListener("input", performSearch);
     }
 
