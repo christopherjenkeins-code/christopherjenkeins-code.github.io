@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu | The Sopranos</title>
-    <!-- CSS Link -->
+    <!-- CSS Links -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu-animations.css">
     <!-- JavaScript -->
     <script src="js/main.js" defer></script>
+    <script src="js/menu.js" defer></script>
 </head>
 <body>
 
@@ -15,9 +17,9 @@
     <header class="site-header">
         <a href="index.html" class="logo">THE SOPRANOS</a>
 
-        <!-- Search Bar -->
+        <!-- Search Bar (filters menu items live) -->
         <div class="search-bar-container">
-            <input type="text" id="searchInput" placeholder="Search the site..." class="search-input">
+            <input type="text" id="searchInput" placeholder="Search the menu..." class="search-input" aria-label="Search the menu">
             <button type="button" class="search-btn">Search</button>
         </div>
 
@@ -31,25 +33,41 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="menu.html" class="active" aria-current="page">Menu</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="enquiry.html">Reservations</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
+
+        <!-- Live opening status (filled in by js/menu.js) -->
+        <div class="status-badge" id="opening-status">Checking Status...</div>
     </header>
 
     <!-- Page Header -->
     <section class="page-header">
-        <h2>FOOD &amp; COCKTAILS</h2>
-        <p>Smash burgers, wings, signature cocktails and event specials.</p>
+        <div class="fade-in">
+            <h2 class="glow-text">FOOD &amp; COCKTAILS</h2>
+            <p>Smash burgers, wings, signature cocktails and event specials.</p>
+        </div>
     </section>
 
     <!-- Main Content -->
     <main class="container">
 
+        <!-- Dynamic toolbar: category filters + Chef's Pick (injected by js/menu.js) -->
+        <div id="menu-toolbar" class="menu-toolbar fade-in"></div>
+        <div id="chefs-pick" class="chefs-pick fade-in" aria-live="polite"></div>
+
+        <!-- Featured highlights: cards are injected by main.js (same as index) -->
+        <section id="featured-section">
+            <h2 class="section-title fade-in">&#11088; Featured Highlights</h2>
+            <div class="card-grid" id="featured-items-container"></div>
+        </section>
+
         <!-- MAIN MENU SECTION -->
         <section class="menu-section">
-            <h2 class="section-title">🍽️ Main Menu</h2>
+            <h2 class="section-title fade-in">🍽️ Main Menu</h2>
 
-            <article class="category">
+            <article class="category fade-in" data-category="burgers">
                 <h3>🍔 Burgers &amp; Classics</h3>
                 <img src="images/burger.jpg.jpg" alt="Classic Smash Burger" class="category-img" width="350" height="345">
                 <p class="category-note">All burgers are served with a side of crispy golden chips.</p>
@@ -78,7 +96,7 @@
                 </div>
             </article>
 
-            <article class="category">
+            <article class="category fade-in" data-category="wings">
                 <h3>🍗 Wings &amp; Meat Delicacies</h3>
                 <img src="images/wings2.jpg" alt="Buffalo wings" class="category-img" width="350" height="345">
                 <div class="menu-grid">
@@ -106,7 +124,7 @@
                 </div>
             </article>
 
-            <article class="category">
+            <article class="category fade-in" data-category="cocktails">
                 <h3>🍹 Signature Cocktails &amp; Drinks</h3>
                 <img src="images/cocktail.jpg.jpeg" alt="Neon Crimson Cocktail" class="category-img" width="350" height="345">
                 <div class="menu-grid">
@@ -154,14 +172,16 @@
                     </div>
                 </div>
             </article>
+
+            <p id="no-results" class="no-results" hidden>No menu items match your search. Try a different word, or clear the search box.</p>
         </section>
 
         <!-- EVENTS & SPECIAL DEALS SECTION -->
-        <section class="events">
-            <h2 class="section-title">🎉 Events &amp; Specials Menu</h2>
+        <section class="events" data-category="specials">
+            <h2 class="section-title fade-in">🎉 Events &amp; Specials Menu</h2>
             <img src="images/event%26specials.jpg" alt="Event specials and drink deals" class="category-img" width="350" height="345">
 
-            <article class="event-block">
+            <article class="event-block fade-in">
                 <h3>🍻 Event Drink Deals</h3>
                 <div class="table-wrapper">
                     <table>
@@ -169,10 +189,10 @@
                             <tr><th>Deal</th><th>Description</th><th>Offer / Schedule</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr id="cocktail-hour-row">
                                 <td class="deal-name">2-for-1 Cocktail Hour</td>
                                 <td>Applies to all Signature Spritzers &amp; Berry Cocktails</td>
-                                <td><span class="badge">Everyday 4 PM &ndash; 7 PM</span></td>
+                                <td><span class="badge" id="cocktail-hour-badge">Everyday 4 PM &ndash; 7 PM</span></td>
                             </tr>
                             <tr>
                                 <td class="deal-name">Bucket of Beers / Ciders</td>
@@ -189,7 +209,7 @@
                 </div>
             </article>
 
-            <article class="event-block">
+            <article class="event-block fade-in">
                 <h3>🍖 Event Food Allocation</h3>
                 <div class="table-wrapper">
                     <table>
@@ -218,6 +238,12 @@
             </article>
         </section>
 
+        <!-- Upcoming lounge events: cards are injected by main.js (same as index) -->
+        <section id="events-section">
+            <h2 class="section-title fade-in">&#127926; Upcoming Lounge Events</h2>
+            <div class="card-grid" id="events-container"></div>
+        </section>
+
     </main>
 
     <!-- Footer with Developer Credit -->
@@ -225,7 +251,7 @@
         <div class="footer-content">
             <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
             <p class="developer-credit">
-                Website Designed &amp; Developed by <strong>Lumkikhaya ST10512732</strong>
+                Website Designed &amp; Developed by <strong>Lumkikhaya Nonyongo ST10512732</strong>
             </p>
             <div class="developer-profile">
                 <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
