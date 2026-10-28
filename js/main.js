@@ -290,3 +290,155 @@
         initSearch();
     });
 })();
+/* ==========================================================================
+   THE SOPRANOS - CORE DYNAMIC LOGIC & ANIMATIONS SCRIPT
+   ========================================================================== */
+
+// --- 1. Dynamic Featured Menu Data ---
+const featuredMenu = [
+  {
+    name: "Gourmet Aged Ribs",
+    description: "Slow-roasted flame-grilled ribs basted in signature Sopranos glaze.",
+    price: "R 240.00",
+    image: "images/ribs & chips.jpg.jpeg"
+  },
+  {
+    name: "Signature Burger",
+    description: "Pure beef patty served with caramelized onions and artisan fries.",
+    price: "R 145.00",
+    image: "images/burger.jpg.jpg"
+  },
+  {
+    name: "Craft Cocktails",
+    description: "Handcrafted mixology creations featuring premium local spirits.",
+    price: "R 95.00",
+    image: "images/Signature cocktails.jpg"
+  }
+];
+
+// --- 2. Dynamic Lounge Events Data ---
+const loungeEvents = [
+  {
+    title: "Friday VIP Lounge Nights",
+    date: "Every Friday | 19:00 - Late",
+    details: "Live DJ sets, premium bottle services, and curated lounge atmosphere.",
+    image: "images/vipevents.jpg"
+  },
+  {
+    title: "Sunday Jazz & Gourmet Lunch",
+    date: "Sundays | 12:00 - 17:00",
+    details: "Relaxing live jazz music accompanied by our full gourmet menu selections.",
+    image: "images/event&specials.jpg"
+  }
+];
+
+// --- 3. Culinary & Technical Research Notes Data ---
+const researchDatabase = {
+  craft: `
+    <h3>Craft & Flavoring Philosophy</h3>
+    <p>Our kitchen applies precision cooking techniques to ensure optimal tenderness in all grilled cuts. Every marinade undergoes a multi-hour reduction process to concentrate aromatic profiles.</p>
+  `,
+  sourcing: `
+    <h3>Ingredient Sourcing Strategy</h3>
+    <p>We partner with local regional suppliers to source fresh produce and quality ingredients daily, ensuring strict quality control and sustainable community support.</p>
+  `,
+  mixology: `
+    <h3>Signature Mixology Science</h3>
+    <p>Our beverage menu integrates botanical syrups, cold-press infusions, and precise temperature control to preserve flavor integrity from the first pour to the last.</p>
+  `
+};
+
+// --- DOM Content Loaded Initialization ---
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeaturedMenu();
+  renderEvents();
+  initScrollAnimations();
+  checkOpeningStatus();
+  
+  if (document.getElementById("research-display")) {
+    switchTab('default' in researchDatabase ? 'default' : 'craft');
+  }
+});
+
+// --- Dynamic Rendering Logic ---
+function renderFeaturedMenu() {
+  const container = document.getElementById("featured-items-container");
+  if (!container) return;
+
+  container.innerHTML = featuredMenu.map(item => `
+    <div class="card fade-in">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="card-body">
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <div class="card-price">${item.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderEvents() {
+  const container = document.getElementById("events-container");
+  if (!container) return;
+
+  container.innerHTML = loungeEvents.map(event => `
+    <div class="card fade-in">
+      <img src="${event.image}" alt="${event.title}">
+      <div class="card-body">
+        <h3>${event.title}</h3>
+        <p><strong>${event.date}</strong></p>
+        <p>${event.details}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// --- Interactive Research Tab Switcher ---
+function switchTab(key) {
+  const display = document.getElementById("research-display");
+  const buttons = document.querySelectorAll(".tab-btn");
+
+  if (!display) return;
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+  
+  const selectedBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes(key));
+  if (selectedBtn) selectedBtn.classList.add("active");
+
+  display.style.opacity = '0';
+  setTimeout(() => {
+    display.innerHTML = researchDatabase[key] || "<p>Research content unavailable.</p>";
+    display.style.opacity = '1';
+  }, 150);
+}
+
+// --- Real-time Opening Hours Status Badge ---
+function checkOpeningStatus() {
+  const badge = document.getElementById("opening-status");
+  if (!badge) return;
+
+  const now = new Date();
+  const hour = now.getHours();
+
+  // Active operating hours assumed between 11:00 (11) and 23:00 (23)
+  if (hour >= 11 && hour < 23) {
+    badge.textContent = "Open Now";
+    badge.className = "status-badge open";
+  } else {
+    badge.textContent = "Closed";
+    badge.className = "status-badge closed";
+  }
+}
+
+// --- Intersection Observer for Scroll Animations ---
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+}
