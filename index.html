@@ -1,95 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sopranos | Restaurant & Lounge</title>
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- JavaScript -->
-    <script src="js/main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sopranos Restaurant & Lounge</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header class="site-header">
-        <a href="index.html" class="logo">THE SOPRANOS</a>
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">THE SOPRANOS</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="enquiry.html">Reservations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="status-badge" id="opening-status">Checking Status...</div>
+  </header>
 
-        <!-- Search Bar -->
-        <div class="search-bar-container">
-            <input type="text" id="searchInput" placeholder="Search the site..." class="search-input">
-            <button type="button" class="search-btn">Search</button>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h1 class="glow-text">Welcome to The Sopranos</h1>
+      <p>Fine Dining, Exquisite Cocktails & Unforgettable Culinary Experiences.</p>
+      <div class="hero-buttons">
+        <a href="enquiry.html" class="btn btn-primary">Book a Table</a>
+        <a href="menu.html" class="btn btn-outline">Explore Menu</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- Mobile menu toggle (pure CSS, no JavaScript needed) -->
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
-        <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+  <!-- Dynamic Featured Section -->
+  <section class="container fade-in">
+    <h2 class="section-title">Featured Highlights</h2>
+    <div class="card-grid" id="featured-items-container">
+      <!-- Dynamically injected via main.js -->
+    </div>
+  </section>
 
-        <nav class="navbar" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Dynamic Events Section -->
+  <section class="container fade-in">
+    <h2 class="section-title">Upcoming Lounge Events</h2>
+    <div class="card-grid" id="events-container">
+      <!-- Dynamically injected via main.js -->
+    </div>
+  </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Banner -->
-        <section class="hero fade-in">
-            <h2>Dining. Drinks. The vibe of the night.</h2>
-            <p>Welcome to northern Roodepoort's premier restaurant &amp; lounge.</p>
-            <p id="open-status" class="open-badge" aria-live="polite"></p>
-            <a href="enquiry.html" class="btn">Reserve a table</a>
-        </section>
+  <footer>
+    <p>&copy; 2026 The Sopranos Restaurant & Lounge. All Rights Reserved.</p>
+  </footer>
 
-        <!-- Homepage Preview Cards & Dynamic Content Containers -->
-        <section class="previews fade-in">
-            <div class="card">
-                <h3>FEATURED SPECIAL</h3>
-                <p><strong>This Week's Signature Cocktail &amp; Event:</strong> Join us this Friday for Live DJ Sets alongside our exclusive Neon Crimson Cocktail deals!</p>
-                <a href="menu.html" class="card-link">View Full Menu &rarr;</a>
-            </div>
-
-            <div class="card">
-                <h3>ABOUT THE SOPRANOS</h3>
-                <p>Located in northern Roodepoort, we deliver high-quality meals, exceptional service, and a vibrant nightlife atmosphere where friends connect.</p>
-                <a href="about.html" class="card-link">Read Our Story &rarr;</a>
-            </div>
-        </section>
-
-        <!-- Dynamic Featured Items Injected by JavaScript -->
-        <section class="container fade-in">
-            <h2 class="section-title">Menu Highlights</h2>
-            <div class="card-grid" id="featured-items-container">
-                <!-- Dynamically populated via main.js -->
-            </div>
-        </section>
-
-        <!-- Dynamic Events Injected by JavaScript -->
-        <section class="container fade-in">
-            <h2 class="section-title">Upcoming Lounge Events</h2>
-            <div class="card-grid" id="events-container">
-                <!-- Dynamically populated via main.js -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer with Developer Credit -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
-            <p class="developer-credit">
-                Website Designed &amp; Developed by <strong>Lumkikhaya Nonyongo ST10512732</strong>
-            </p>
-            <div class="developer-profile">
-                <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
-            </div>
-        </div>
-    </footer>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
