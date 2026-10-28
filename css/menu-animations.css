@@ -1,0 +1,137 @@
+/* menu-animations.css – load AFTER style.css.
+   Uses your existing variables (--gold, --red, --card, --surface, --line).
+   Fade-in, status badge, glow-text and card styles already live in style.css,
+   so this file only adds what the menu page needs on top. */
+
+/* ---------- Page title glow (red, to suit the banner heading) ---------- */
+.page-header .glow-text {
+  animation: menuGlow 3s ease-in-out infinite alternate;
+}
+@keyframes menuGlow {
+  from { text-shadow: 0 0 6px rgba(191, 30, 46, 0.3), 0 0 14px rgba(191, 30, 46, 0.2); }
+  to   { text-shadow: 0 0 12px rgba(191, 30, 46, 0.8), 0 0 30px rgba(191, 30, 46, 0.4); }
+}
+
+/* ---------- Status badge: keep it tidy in the header + gentle pulse ---------- */
+.site-header .status-badge { white-space: nowrap; margin-left: 12px; }
+.site-header .status-badge.open { animation: openPulse 2.2s infinite; }
+@keyframes openPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(78, 250, 139, 0.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(78, 250, 139, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(78, 250, 139, 0); }
+}
+
+/* ---------- Filter buttons (same look as your .tab-btn pills) ---------- */
+.menu-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0 24px;
+}
+.filter-btn {
+  background: var(--card);
+  border: 1px solid rgba(255, 184, 28, 0.35);
+  color: var(--text);
+  padding: 0.6rem 1.3rem;
+  border-radius: 20px;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.filter-btn:hover { transform: translateY(-2px); border-color: var(--gold); }
+.filter-btn.active { background: var(--gold); color: #0d0d0d; font-weight: 600; border-color: var(--gold); }
+.filter-btn:focus-visible,
+.pick-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- Chef's Pick (matches your .about-card look) ---------- */
+.chefs-pick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.chefs-pick strong { color: var(--gold); font-size: 1.1rem; }
+.chefs-pick p { color: var(--muted); margin-top: 6px; max-width: 60ch; font-size: 0.95rem; }
+.pick-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.6rem 1.3rem;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.pick-btn:hover { background: var(--gold); color: #0d0d0d; }
+.pick-swap { animation: pickSwap 0.5s ease; }
+@keyframes pickSwap {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Menu cards: extra glow on top of your hover ---------- */
+.menu-card:hover { box-shadow: 0 8px 24px rgba(191, 30, 46, 0.3); }
+.menu-card.picked { border-color: var(--gold); animation: pickedFlash 1.6s ease 2; }
+@keyframes pickedFlash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 184, 28, 0); }
+  50%      { box-shadow: 0 0 22px 4px rgba(255, 184, 28, 0.6); }
+}
+
+.menu-card.featured { position: relative; overflow: hidden; }
+.menu-card.featured::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  animation: menuShine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes menuShine { 0% { left: -120%; } 40%, 100% { left: 160%; } }
+
+/* Cards pop in again when a filter / search shows them */
+.category.refresh .menu-card {
+  animation: cardIn 0.45s ease both;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.category-img { transition: transform 0.5s ease, box-shadow 0.5s ease; }
+.category-img:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(191, 30, 46, 0.35); }
+
+/* ---------- Live cocktail-hour row ---------- */
+.deal-live td { background: rgba(191, 30, 46, 0.2); }
+.deal-live .badge { animation: openPulse 2.2s infinite; }
+
+/* ---------- Injected sections (featured + events) ---------- */
+#featured-section .card-grid,
+#events-section .card-grid { margin-bottom: 30px; }
+#featured-section .card,
+#events-section .card { max-width: none; padding: 0; }   /* index look: image runs edge to edge */
+
+.no-results { text-align: center; padding: 30px 10px; color: var(--muted); }
+
+@media (max-width: 768px) {
+  .site-header { flex-wrap: wrap; gap: 8px; }
+  .site-header .status-badge { margin-left: 0; }
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .page-header .glow-text, .site-header .status-badge.open, .menu-card.featured::after,
+  .menu-card.picked, .pick-swap, .category.refresh .menu-card, .deal-live .badge { animation: none; }
+  .category-img:hover { transform: none; }
+}
