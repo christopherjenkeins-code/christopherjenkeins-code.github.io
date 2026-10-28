@@ -1,108 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | The Sopranos</title>
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- JavaScript -->
-    <script src="js/main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | The Sopranos Restaurant & Lounge</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header class="site-header">
-        <a href="index.html" class="logo">THE SOPRANOS</a>
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">THE SOPRANOS</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="enquiry.html">Reservations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="status-badge" id="opening-status">Checking Status...</div>
+  </header>
 
-        <!-- Search Bar -->
-        <div class="search-bar-container">
-            <input type="text" id="searchInput" placeholder="Search the site..." class="search-input">
-            <button type="button" class="search-btn">Search</button>
-        </div>
+  <!-- Hero Header -->
+  <section class="about-hero fade-in">
+    <h1 class="glow-text">Our Story & Research</h1>
+    <p>Discover the heritage, culinary concepts, and technical research behind our brand.</p>
+  </section>
 
-        <!-- Mobile menu toggle (pure CSS, no JavaScript needed) -->
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
-        <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+  <!-- Story & Vision -->
+  <section class="container fade-in">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>The Sopranos Legacy</h2>
+        <p>Located in Roodepoort, Gauteng, The Sopranos Lounge balances luxury entertainment with authentic gourmet cuisine. Every layout, recipe, and technical web interaction is engineered to provide an unforgettable experience.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/gourmet dish.jpg" alt="Gourmet Dish" class="img-responsive">
+      </div>
+    </div>
+  </section>
 
-        <nav class="navbar" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active" aria-current="page">About Us</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Dynamic Research & Study Section -->
+  <section class="container fade-in">
+    <h2 class="section-title">Culinary Research & Architecture Study</h2>
+    <div class="research-tabs">
+      <button class="tab-btn active" onclick="switchTab('craft')">Craft & Flavoring</button>
+      <button class="tab-btn" onclick="switchTab('sourcing')">Ingredient Sourcing</button>
+      <button class="tab-btn" onclick="switchTab('mixology')">Signature Mixology</button>
+    </div>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Page Header -->
-        <section class="page-header fade-in">
-            <h2>OUR STORY YOUR VISION</h2>
-            <p>Experience Nightlife, Perfected..</p>
-        </section>
+    <div class="research-content-box" id="research-display">
+      <!-- Dynamically injected via main.js -->
+    </div>
+  </section>
 
-        <!-- About Sections -->
-        <section class="about-container fade-in">
-            <div class="about-card">
-                <h3>Who We Are</h3>
-                <p>
-                    Established as the entertainment hub of northern ROODEPOORT in 2024, <strong>The Sopranos Restaurant &amp; Lounge</strong> blends high-end cuisine with an energetic nightlife atmosphere. Whether you're dropping in for a quiet dinner or celebrating through the night with friends, our goal is to deliver excellence in every dish and drink. Renowned as northern Roodepoort's premier fine dining destination, The Sopranos Restaurant &amp; Lounge offers an exquisite fusion of refined cuisine, elegant surroundings, and impeccable service. Every dish is thoughtfully prepared using the finest ingredients, while our curated selection of wines, cocktails, and premium beverages perfectly complement the experience. Whether you're celebrating a special occasion, enjoying an intimate evening, or indulging in a memorable dining experience, The Sopranos promises exceptional flavour, timeless elegance, and hospitality of the highest standard.
-                </p>
-            </div>
+  <footer>
+    <p>&copy; 2026 The Sopranos Restaurant & Lounge. All Rights Reserved.</p>
+  </footer>
 
-            <div class="about-card">
-                <h3>Our Culinary Vision</h3>
-                <p>
-                    Our culinary philosophy celebrates the finest locally sourced ingredients, elevated through international inspiration and meticulous craftsmanship to create dishes of exceptional flavour and elegance. Paired with expertly crafted signature cocktails, captivating live entertainment, and a sophisticated contemporary setting, every visit to The Sopranos Restaurant &amp; Lounge is designed to be an unforgettable experience where fine dining meets a redefined nightlife.
-                </p>
-            </div>
-
-            <div class="about-card">
-                <h3>Our Design Approach</h3>
-                <p>Every major decision on this site is grounded in research on what actually gets hospitality customers through the door, rather than guesswork:</p>
-                <ul class="approach-list">
-                    <li>The layout is mobile-first and responsive because the large majority of diners research a restaurant on their phone before visiting, and most will not trust a site that isn't mobile-friendly (Sauce, 2025).</li>
-                    <li>We lead with large, high-quality photography of our food and drinks on the Home and Menu pages, since content built around strong imagery consistently drives far higher engagement than text alone (MenuTiger, 2026).</li>
-                    <li>Professional, dish-accurate food photography was prioritised over stock imagery, as it is consistently identified as the single highest-impact design element on a restaurant website (RichMenu, 2026).</li>
-                    <li>Navigation was kept to five clear, single-click destinations (Home, About, Menu, Services, Contact) because most diners decide whether to visit or order based directly on what they find on the website itself (ChowNow, 2026).</li>
-                    <li>All meaningful images include descriptive <code>alt</code> text, in line with the Web Content Accessibility Guidelines, so the site remains usable for visitors relying on screen readers (W3C, 2023).</li>
-                </ul>
-            </div>
-
-            <!-- Dynamic Interactive Research Exploration Box -->
-            <div class="about-card">
-                <h3>Interactive Research Breakdown</h3>
-                <p>Click below to explore deeper insights behind our culinary and beverage development:</p>
-                
-                <div class="research-tabs">
-                    <button class="tab-btn active" onclick="switchTab('craft')">Craft &amp; Flavoring</button>
-                    <button class="tab-btn" onclick="switchTab('sourcing')">Ingredient Sourcing</button>
-                    <button class="tab-btn" onclick="switchTab('mixology')">Signature Mixology</button>
-                </div>
-
-                <div class="research-content-box" id="research-display">
-                    <!-- Dynamically updated via main.js -->
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <!-- Footer with Developer Credit -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
-            <p class="developer-credit">
-                Website Designed &amp; Developed by <strong>Lumkikhaya Nonyongo ST10512732</strong>
-            </p>
-            <div class="developer-profile">
-                <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
-            </div>
-        </div>
-    </footer>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
