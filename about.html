@@ -39,13 +39,13 @@
     <!-- Main Content -->
     <main>
         <!-- Page Header -->
-        <section class="page-header">
+        <section class="page-header fade-in">
             <h2>OUR STORY YOUR VISION</h2>
             <p>Experience Nightlife, Perfected..</p>
         </section>
 
         <!-- About Sections -->
-        <section class="about-container">
+        <section class="about-container fade-in">
             <div class="about-card">
                 <h3>Who We Are</h3>
                 <p>
@@ -72,6 +72,22 @@
                 </ul>
             </div>
 
+            <!-- Dynamic Interactive Research Exploration Box -->
+            <div class="about-card">
+                <h3>Interactive Research Breakdown</h3>
+                <p>Click below to explore deeper insights behind our culinary and beverage development:</p>
+                
+                <div class="research-tabs">
+                    <button class="tab-btn active" onclick="switchTab('craft')">Craft &amp; Flavoring</button>
+                    <button class="tab-btn" onclick="switchTab('sourcing')">Ingredient Sourcing</button>
+                    <button class="tab-btn" onclick="switchTab('mixology')">Signature Mixology</button>
+                </div>
+
+                <div class="research-content-box" id="research-display">
+                    <!-- Dynamically updated via main.js -->
+                </div>
+            </div>
+
         </section>
     </main>
 
@@ -80,7 +96,7 @@
         <div class="footer-content">
             <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
             <p class="developer-credit">
-                Website Designed &amp; Developed by <strong>Lumkikhaya ST10512732</strong>
+                Website Designed &amp; Developed by <strong>Lumkikhaya Nonyongo ST10512732</strong>
             </p>
             <div class="developer-profile">
                 <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
