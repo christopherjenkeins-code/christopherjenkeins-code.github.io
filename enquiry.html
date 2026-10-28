@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations | The Sopranos</title>
-    <!-- CSS Link -->
+    <!-- CSS Links -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages-animations.css">
     <!-- JavaScript -->
     <script src="js/main.js" defer></script>
+    <script src="js/pages.js" defer></script>
 </head>
 <body>
 
@@ -31,21 +33,31 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="enquiry.html" class="active" aria-current="page">Reservations</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
+
+        <!-- Live opening status (filled in by main.js) -->
+        <div class="status-badge" id="opening-status">Checking Status...</div>
     </header>
 
     <!-- Main Content -->
     <main>
         <!-- Page Header -->
         <section class="page-header">
-            <h2>RESERVATIONS &amp; ENQUIRIES</h2>
-            <p>Book a table or inquire about hosting private VIP events with us.</p>
+            <div class="fade-in">
+                <h2 class="glow-text">RESERVATIONS &amp; ENQUIRIES</h2>
+                <p>Book a table or inquire about hosting private VIP events with us.</p>
+            </div>
         </section>
 
         <!-- Form Section -->
-        <section class="form-container">
+        <section class="form-container fade-in">
+
+            <!-- Progress bar (filled in by js/pages.js) -->
+            <div id="form-progress" class="form-progress"></div>
+
             <form action="#" method="POST" class="reservation-form" id="reservation-form">
 
                 <div class="form-group">
@@ -75,6 +87,12 @@
                     </div>
                 </div>
 
+                <!-- Quick time picks (built by js/pages.js from the chosen date) -->
+                <div class="time-picker">
+                    <div id="time-chips" class="time-chips" role="group" aria-label="Quick time picks"></div>
+                    <small id="time-hint" class="time-hint">Pick a date to see available times.</small>
+                </div>
+
                 <div class="form-group">
                     <label for="guests">Number of Guests *</label>
                     <select id="guests" name="guests" required>
@@ -88,8 +106,12 @@
 
                 <div class="form-group">
                     <label for="message">Special Requests / Notes</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Mention seating preferences, birthday celebrations, or dietary needs..."></textarea>
+                    <textarea id="message" name="message" rows="4" maxlength="300" placeholder="Mention seating preferences, birthday celebrations, or dietary needs..."></textarea>
+                    <small class="char-count" id="message-count"></small>
                 </div>
+
+                <!-- Live summary of the request (built by js/pages.js) -->
+                <div id="booking-summary" class="booking-summary" aria-live="polite" hidden></div>
 
                 <button type="submit" class="btn submit-btn">Submit Reservation Request</button>
                 <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
@@ -102,7 +124,7 @@
         <div class="footer-content">
             <p>&copy; <span id="year">2026</span> The Sopranos Restaurant &amp; Lounge. All Rights Reserved.</p>
             <p class="developer-credit">
-                Website Designed &amp; Developed by <strong>Lumkikhaya ST10512732</strong>
+                Website Designed &amp; Developed by <strong>Lumkikhaya Nonyongo ST10512732</strong>
             </p>
             <div class="developer-profile">
                 <img src="images/developer.jpg.jpeg" alt="Lumkikhaya Luzuko Nonyongo" class="dev-img">
